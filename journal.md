@@ -4,48 +4,61 @@
 3. What questions do I have
 
 18 Feb 2020
-1. Today we created a chess board using a new code called "for n in range ()". This piece of code repeats the code listed under it for the number of time that is put within the brackets. This code also involves a optical illusion as by moving one of the repeting sequences, some square look bigger than other even though they are actually the same. And to show this slow progression we used the mouseClicked sequence which changes the amount it has moved every time you touch key pad.
+1. Today we learned how to code for Arduino. We assembled virtual wires, resistors, LED lights, 9v Battery, Breadboard and a Arduino. We hooked up the wires, resistors, lights, breadboard and battery to see how the circuit would work first. And then, we took out the battery and replaced it with a Arduino which we coded it to do what we wanted it to do. In particular we programmed it in what order to turn on and off the LED lights. I personally programmed my Arduino to turn the light bulbs on from left to right, and turn them off from right to left.
 
 ```.py
-offset = 50
+void setup()
+{
+  pinMode(13, OUTPUT); //TL
+  pinMode(12, OUTPUT); //TM
+  pinMode(11, OUTPUT); //TR
+  pinMode(10, OUTPUT); //BL
+  pinMode(9, OUTPUT); //BM
+  pinMode(8, OUTPUT); //BR
+}
 
-def mouseClicked():
-    global offset
-    offset = offset + 1
-
-def setup():
-    size(500,500)
-    background(255) #rgb
+void loop()
+{
+  digitalWrite(13, HIGH);
+  delay(500); // Wait for 1000 millisecond(s)
   
-def draw():
-    fill(0)
-    stroke(0)
-    y = 0
-    for n in range (10):
-        line (0,y,500,y)
-        y = y + 50
-        
-    stroke(255)
-    fill(0)
-    y=0
-    for n in range (5):
-        x=0
-        for n in range(5):
-            square (x,y,50)
-            x = x + 100
-        y = y + 100
-        
-    y=50
-    global offset
-    for n in range (5):
-        x = 0 + offset
-        for n in range(5):
-            square (x,y,50)
-            x = x + 100
-        y = y + 100
+  digitalWrite(12, HIGH);
+  delay(500); // Wait for 1000 millisecond(s)
+
+  digitalWrite(11, HIGH);
+  delay(500); // Wait for 1000 millisecond(s)
+
+  digitalWrite(10, HIGH);
+  delay(500); // Wait for 1000 millisecond(s)
+
+  digitalWrite(9, HIGH);
+  delay(500); // Wait for 1000 millisecond(s)
+  
+  digitalWrite(8, HIGH);
+  delay(500); // Wait for 1000 millisecond(s)
+
+  
+  digitalWrite(8, LOW);
+  delay(500); // Wait for 1000 millisecond(s)
+  
+  digitalWrite(9, LOW);
+  delay(500); // Wait for 1000 millisecond(s)
+  
+  digitalWrite(10, LOW);
+  delay(500); // Wait for 1000 millisecond(s)
+  
+  digitalWrite(11, LOW);
+  delay(500); // Wait for 1000 millisecond(s)
+ 
+  digitalWrite(12, LOW);
+  delay(500); // Wait for 1000 millisecond(s)
+  
+  digitalWrite(13, LOW);
+  delay(500); // Wait for 1000 millisecond(s)
+
+}
 ```
 
-2. Today we learned a new piece of code " for n in range()". This is a repetition sequence which can make your code a lot more organized, simple and easier to understand and create. Using this code will probably save me a lot of time in the future, and through the practice of what we have already learned, I am slowly getting better at this whole coding proccess.
+2. Today we learned how to use the commands and coding format that we have already learned on a virtual Arduino. Instead of coding, appearances which we usually do, we learned how to code a realistic virtual Arduino board so that next time we can work with a real Arduino board and programme it to turn the lights on and off when we want it to.
 
-
-3. Is there a way to create a multiplied or exponentially increasing variable as now we know how to do a devided, added and subtracted but not multiplied or exponential?
+3. How different is a Arduino virtual board to a physical real life board?
