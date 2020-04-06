@@ -3,62 +3,44 @@
 2. What did I learn
 3. What questions do I have
 
-18 Feb 2020
-1. Today we learned how to code for Arduino. We assembled virtual wires, resistors, LED lights, 9v Battery, Breadboard and a Arduino. We hooked up the wires, resistors, lights, breadboard and battery to see how the circuit would work first. And then, we took out the battery and replaced it with a Arduino which we coded it to do what we wanted it to do. In particular we programmed it in what order to turn on and off the LED lights. I personally programmed my Arduino to turn the light bulbs on from left to right, and turn them off from right to left.
+6 Apr 2020
+1. Today we used processing to make a python code. This code included making the first 2 steps of the final product being the simulation of the spread of covid-19. The first step was to find a way to represent individuals which may or may not have covid-19. Using abstraction we understand that for our purpose of simulating the spread of the disease, the only characteristic necessary to show would be if the person is infected which we can do by changing the colour of the representation. There is no need to show race, hair colour, eye colour or anything like that. Therefore we went with a simple circle with the idea to change the colour if infected. The next step was representing a community, we did this by making 10 circles representing 10 people and allowing them to move around the space, we used "for loop" sequences for this.
 
 ```.py
-void setup()
-{
-  pinMode(13, OUTPUT); //TL
-  pinMode(12, OUTPUT); //TM
-  pinMode(11, OUTPUT); //TR
-  pinMode(10, OUTPUT); //BL
-  pinMode(9, OUTPUT); //BM
-  pinMode(8, OUTPUT); //BR
-}
+x = [random(0,500)] #a list, which is a collection of values
+y = [random(0,500)] #a list, which is a collection of values 
 
-void loop()
-{
-  digitalWrite(13, HIGH);
-  delay(500); // Wait for 1000 millisecond(s)
+def setup():
+    size(500,500)
+    #create random individuals
+    for n in range (9):
+        x.append(random(0,500))
+        y.append(random(0,500))
   
-  digitalWrite(12, HIGH);
-  delay(500); // Wait for 1000 millisecond(s)
-
-  digitalWrite(11, HIGH);
-  delay(500); // Wait for 1000 millisecond(s)
-
-  digitalWrite(10, HIGH);
-  delay(500); // Wait for 1000 millisecond(s)
-
-  digitalWrite(9, HIGH);
-  delay(500); // Wait for 1000 millisecond(s)
-  
-  digitalWrite(8, HIGH);
-  delay(500); // Wait for 1000 millisecond(s)
-
-  
-  digitalWrite(8, LOW);
-  delay(500); // Wait for 1000 millisecond(s)
-  
-  digitalWrite(9, LOW);
-  delay(500); // Wait for 1000 millisecond(s)
-  
-  digitalWrite(10, LOW);
-  delay(500); // Wait for 1000 millisecond(s)
-  
-  digitalWrite(11, LOW);
-  delay(500); // Wait for 1000 millisecond(s)
- 
-  digitalWrite(12, LOW);
-  delay(500); // Wait for 1000 millisecond(s)
-  
-  digitalWrite(13, LOW);
-  delay(500); // Wait for 1000 millisecond(s)
-
-}
+def draw():
+    global x, y
+    background(255)
+    strokeWeight(2)
+    
+    #create 1st Individual
+    for i in range (10):
+        circle(x[i], y[i], 40)
+        x[i] = x[i] + random(-10,10)
+        y[i] = y[i] + random(-10,10)
+        
+            #boundaries conditions
+        if (x[i] > 500):
+            x[i] = 500
+        if (x[i] < 0):
+            x[i] = 0
+        if (y[i] > 500):
+            y[i] = 500
+        if (y[i] < 0):
+            y[i] = 0
+           
+    delay(100)
 ```
 
-2. Today we learned how to use the commands and coding format that we have already learned on a virtual Arduino. Instead of coding, appearances which we usually do, we learned how to code a realistic virtual Arduino board so that next time we can work with a real Arduino board and programme it to turn the lights on and off when we want it to.
+2. Today I practiced using "for loop" sequences, which is necessary for me to better understand how and when to use the sequence. I also learned a new sequance, ".append" which I used in the setup function. It is a way of adding values to a list for an already defined variable. This sequence is very handy for not having to manually imput values for the variables into a list. A list is a data structure in Python that is a mutable, or changeable, ordered sequence of elements. Each element or value that is inside of a list is called an item, (Tagliaferri, 2016).
 
-3. How different is a Arduino virtual board to a physical real life board?
+3. How do I make a code that only allows the circles to touch eachother, but doesnt allow them to go on top of eachother?
