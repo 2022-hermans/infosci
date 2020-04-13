@@ -3,12 +3,13 @@
 2. What did I learn
 3. What questions do I have
 
-6 Apr 2020
-1. Today we used processing to make a python code. This code included making the first 2 steps of the final product being the simulation of the spread of covid-19. The first step was to find a way to represent individuals which may or may not have covid-19. Using abstraction we understand that for our purpose of simulating the spread of the disease, the only characteristic necessary to show would be if the person is infected which we can do by changing the colour of the representation. There is no need to show race, hair colour, eye colour or anything like that. Therefore we went with a simple circle with the idea to change the colour if infected. The next step was representing a community, we did this by making 10 circles representing 10 people and allowing them to move around the space, we used "for loop" sequences for this.
+12 Apr 2020
+1. In week 29 we expiremented more with python. Allowing us to explore our own means and ways of completing the work which can be from trying to brainstorm ideas or researching ideas that could work. Through this I was capable enough to complete some knew lines of code that I didnt understand before, one of the commands is "sys.exit()" which I found online. I needed a way of telling it to stop because it was finished, therefore I used a if statement followed by "sys.exit()" to stop the code when I wanted it to. I did all of this in the bears, the year is.., and celcius to farenheit challenges of week 29 in addition to bettering our covid-19 simulation code.
 
 ```.py
 x = [random(0,500)] #a list, which is a collection of values
-y = [random(0,500)] #a list, which is a collection of values 
+y = [random(0,500)] #a list, which is a collection of values h
+h = [True, False]
 
 def setup():
     size(500,500)
@@ -16,31 +17,56 @@ def setup():
     for n in range (9):
         x.append(random(0,500))
         y.append(random(0,500))
-  
+        h.append(True)
+        
+def distance(x1, x2, y1, y2):
+    a = (x1 - x2)
+    b = (y1 - y2)
+    c = sqrt(a**2 + b**2)
+    return c
+
 def draw():
-    global x, y
+    global x, y, h, n
     background(255)
     strokeWeight(2)
-    
-    #create 1st Individual
-    for i in range (10):
+
+    #CREATING INDIVIDUALS
+    for i in range (len(x)):
+        if h[i] == True:
+            fill(255)
+        else:
+            fill(255,0,0) #False
         circle(x[i], y[i], 40)
-        x[i] = x[i] + random(-10,10)
-        y[i] = y[i] + random(-10,10)
         
+   #NEIGHBOURS 
+        for n in range (len(x)):
+            if n == i:
+                continue
+            d = distance(x[i], x[n], y[i], y[n])
+            print(d)
+            if d < 40 and (h[i] == False or h[n] == False):
+                #Infection Happens
+                h[i] = False
+                h[n] = False
+        
+    #MOVING CIRCLES
+    for m in range (len(x)):
+        x[m] = x[m] + random(-10,10)
+        y[m] = y[m] + random(-10,10)
+    
             #boundaries conditions
-        if (x[i] > 500):
-            x[i] = 500
-        if (x[i] < 0):
-            x[i] = 0
-        if (y[i] > 500):
-            y[i] = 500
-        if (y[i] < 0):
-            y[i] = 0
-           
-    delay(100)
+        if (x[m] > 500):
+            x[m] = 500
+        if (x[m] < 0):
+            x[m] = 0
+        if (y[m] > 500):
+            y[m] = 500
+        if (y[m] < 0):
+            y[m] = 0
+    delay(50)
 ```
 
-2. Today I practiced using "for loop" sequences, which is necessary for me to better understand how and when to use the sequence. I also learned a new sequance, ".append" which I used in the setup function. It is a way of adding values to a list for an already defined variable. This sequence is very handy for not having to manually imput values for the variables into a list. A list is a data structure in Python that is a mutable, or changeable, ordered sequence of elements. Each element or value that is inside of a list is called an item, (Tagliaferri, 2016).
+2. I learned how to better use google to research for computer science. Through repetition I am gettin the hang of undestanding how to be direct with google and get the answers out of it that I want. I knew how to do this for other subjects, but I learned for computer science, I just have to be very specific since thats how computers also think. And by working with computers, I have to adjust the way I think and research. I also learned how to use knew sequences such as sys.exit() to stop my code, and I learned how to calculate mathematics in my coding.
 
-3. How do I make a code that only allows the circles to touch eachother, but doesnt allow them to go on top of eachother?
+
+3. I wonder why the creators of python and other coding servers made it so that you have to get the code perfect for it to work. I undestand this allows for a better understanding of how computers work, but not easier. It makes it difficult because there might be small issues such as putting variables on the wrong side of the "=", this stops your code from working even though I believe it shouldnt since I dont see a possible alternative way of understanding this code.
