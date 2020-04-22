@@ -4,20 +4,43 @@
 3. What questions do I have
 
 12 Apr 2020
-1. In week 29 we expiremented more with python. Allowing us to explore our own means and ways of completing the work which can be from trying to brainstorm ideas or researching ideas that could work. Through this I was capable enough to complete some knew lines of code that I didnt understand before, one of the commands is "sys.exit()" which I found online. I needed a way of telling it to stop because it was finished, therefore I used a if statement followed by "sys.exit()" to stop the code when I wanted it to. I did all of this in the bears, the year is.., and celcius to farenheit challenges of week 29 in addition to bettering our covid-19 simulation code.
+1. In week 31 we took our COVID-19 simulation to the next level. I followed the instuctive videos that guided me to making my code a more complicated and more realisic simulation. I ran into many difficulites and problems during this week, and I had to fix a lot of these problems on my own by testing each parts of the code individually. I had to umderstand what I wanted each line of code to achieve, and deleted the lines that werent helpfull so that I could make the code simpler and easier to understand and work with. I achieved more than asked this week as I chose to build bar graphs for the recovered people, played around with the code to make it more realistic and more.
 
 ```.py
 x = [random(0,500)] #a list, which is a collection of values
 y = [random(0,500)] #a list, which is a collection of values h
-h = [True, False]
+h = ["healthy" , "sick"]
+days = [-1,30]
+infected = 0 #number of infected individuals
+iteration = 0
+recovered = 0
+
+def bargraph():
+    global infected, x, iteration
+    line(0,500,500,500)
+    healthy = len(x) - infected
+    fill(255)
+    rect(150, 520, 10*healthy, 10)
+    fill(255,0,0)
+    rect(150, 535, 10*infected, 10)
+    fill(0,0,255)
+    rect(150, 550, 10*recovered, 10)
+    fill(0)
+    text("Healthy {}".format(healthy),50,530)
+    text("Recoverd {}".format(recovered),50,560)
+    text("Sick {}".format(infected),50,545)
+    text("Iteration No.{}".format(iteration),10,590)
+    
+
 
 def setup():
-    size(500,500)
+    size(500,600)
     #create random individuals
-    for n in range (9):
+    for n in range (50):
         x.append(random(0,500))
         y.append(random(0,500))
-        h.append(True)
+        h.append("healthy")
+        days.append(-1)
         
 def distance(x1, x2, y1, y2):
     a = (x1 - x2)
@@ -25,29 +48,42 @@ def distance(x1, x2, y1, y2):
     c = sqrt(a**2 + b**2)
     return c
 
+  
 def draw():
-    global x, y, h, n
+    global x, y, infected, iteration, recovered
+    iteration = iteration + 1
     background(255)
-    strokeWeight(2)
+
+    infected = 0
+    
+    for i in range(len(h)):
+        if h[i] == "sick":
+            infected = infected + 1
+    bargraph()
+        
+
 
     #CREATING INDIVIDUALS
     for i in range (len(x)):
-        if h[i] == True:
+        if h[i] == "healthy":
             fill(255)
+        elif h[i] == "sick":
+            fill(255,0,0) #"sick"        
         else:
-            fill(255,0,0) #False
+            fill(0,0,255)
+            
         circle(x[i], y[i], 40)
-        
+            
    #NEIGHBOURS 
         for n in range (len(x)):
             if n == i:
                 continue
             d = distance(x[i], x[n], y[i], y[n])
-            print(d)
-            if d < 40 and (h[i] == False or h[n] == False):
-                #Infection Happens
-                h[i] = False
-                h[n] = False
+            if d < 40 and h[i] == "sick" and h[n] == "healthy":
+                h[n] = "sick"
+                days[n] = 50
+
+                
         
     #MOVING CIRCLES
     for m in range (len(x)):
@@ -63,10 +99,25 @@ def draw():
             y[m] = 500
         if (y[m] < 0):
             y[m] = 0
+            
+            
+    #Change individual to recovered
+    for i in range(len(h)):
+        if h[i] == "sick":
+            days[i] = days[i] - 1
+            if days[i] == 0:
+                h[i] = "recovered"
+                recovered = recovered + 1
+
+     
+            
+            #How to make a code that only allows the circles to touch, not allowed to go on top of eachother
+    
+
     delay(50)
 ```
 
-2. I learned how to better use google to research for computer science. Through repetition I am gettin the hang of undestanding how to be direct with google and get the answers out of it that I want. I knew how to do this for other subjects, but I learned for computer science, I just have to be very specific since thats how computers also think. And by working with computers, I have to adjust the way I think and research. I also learned how to use knew sequences such as sys.exit() to stop my code, and I learned how to calculate mathematics in my coding.
+2. I learned how to create bar graphs in this code. Bar graphs are very usefull as it allows me to see the statstics of what is happening. I also learned how to work better with more complicated and next level coding as I had to fix mistakes and learn from them as lots of this week was finding your own way.
 
 
-3. I wonder why the creators of python and other coding servers made it so that you have to get the code perfect for it to work. I undestand this allows for a better understanding of how computers work, but not easier. It makes it difficult because there might be small issues such as putting variables on the wrong side of the "=", this stops your code from working even though I believe it shouldnt since I dont see a possible alternative way of understanding this code.
+3. The next thing I would like to know is how to create a code that also allows the people to die from the corona virus, making it more realistic. This code would also detect the people that are high risk and it would make them have a higher chance of fatality.
