@@ -4,9 +4,8 @@
 3. What questions do I have
 
 12 Apr 2020
-1. In week 32 we created a video summarising all our work from the year. All we have learned and what we have taken away from learning this year in the second semester of the info science. I wrote a script for this video, the link is https://docs.google.com/document/d/1KJVyw9IWjVwl3UX1xGjkEEURuXusJyB3z0-b2N8DWb8/edit?usp=sharing and through making this script, I actually realised the amount I have learned in this short span of time.
+1. Today in week 33 we looked at Ceasars Cipher and when he used it in addition to looking at the Cicada scavenger hunt. Cicada 3301 is quite a mystery therefore I really enjoyed that part. Dr Ruben also gave us a message in Ceasars Cipher and we had to decipher it using what we learned.
 
-2. How to create a screen recording using QuickTime player on mac.
+2. This week I learned quite a bit about Ceasars Cipher, how cipher and decipher using Ceasars' method. I also learned about the Cicada scavenger hunt, its mysteries, the processes and the clues used. I learned how these individuals managed to crack the codes given to them by Cicada 3301.
 
-
-3. No questions this week
+3. Who is Cicada? What do they do? Where are they? Have they impacted my life without me knowing?
